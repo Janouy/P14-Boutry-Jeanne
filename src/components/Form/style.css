@@ -1,0 +1,73 @@
+.formNewEmployee {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	height: 620px;
+	width: 230px;
+	border: 1px solid rgba(110, 133, 16, 0.2);
+	box-shadow: 4px 4px 4px rgba(110, 133, 16, 0.2);
+	border-radius: 10px;
+	padding: 12px;
+}
+.formSubmitButton {
+	position: relative;
+	top: 20px;
+	left: 55px;
+	width: 90px;
+	height: 25px;
+	margin: 1.5vh;
+	font-weight: bold;
+	cursor: pointer;
+	color: #fff;
+	background-color: #6e8510;
+	border-radius: 5px;
+	border: none;
+	filter: drop-shadow(2px 4px 2px #6e8510);
+	font-size: 14px;
+}
+label {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.labelName {
+	padding-bottom: 10px;
+	margin-top: 10px;
+	font-size: 12px;
+}
+h1 {
+	filter: drop-shadow(2px 4px 2px #afa8a8);
+}
+.address {
+	margin-top: 2vh;
+}
+fieldset {
+	display: block;
+	margin-inline-start: 2px;
+	margin-inline-end: 2px;
+	padding-block-start: 0.35em;
+	padding-inline-start: 0.75em;
+	padding-inline-end: 0.75em;
+	padding-block-end: 0.625em;
+	min-inline-size: min-content;
+	border-width: 2px;
+	border-style: groove;
+	border-color: rgb(192, 192, 192);
+	border-image: initial;
+}
+legend {
+	display: block;
+	padding-inline-start: 2px;
+	padding-inline-end: 2px;
+	border-width: initial;
+	border-style: none;
+	border-color: initial;
+	border-image: initial;
+	text-align: left;
+}
+
+input {
+	padding: 2.5px;
+	width: 197px;
+	height: 18px;
+}
