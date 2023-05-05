@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
 import Calendar from "react-test-janouy/dist/pages/Calendar";
+import { departments, states } from "../../utils/const";
+import Select from "react-select";
 
 const Form = () => {
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
@@ -23,6 +25,12 @@ const Form = () => {
 	const handleChange = (event) => {
 		updateFormInput(event.target.name, event.target.value);
 	};
+	const handleSelectDepartment = (event) => {
+		updateFormInput("department", event.value);
+	};
+	const handleSelectState = (event) => {
+		updateFormInput("state", event.value);
+	};
 
 	const submitForm = (event) => {
 		console.log(formInputs);
@@ -42,6 +50,25 @@ const Form = () => {
 	const showCalendar = (event) => {
 		event === "birthDate" ? setBirthCalendarOpen(true) : setStartCalendarOpen(true);
 	};
+	const customStyles = {
+		control: (provided, state) => ({
+			...provided,
+			width: 208,
+			cursor: "pointer",
+			backgroundColor: state.isFocused ? "#eef0e6" : "#ffff",
+			"&:hover": { backgroundColor: "#eef0e6" },
+			textAlign: "left",
+			fontSize: "1rem",
+		}),
+		menuList: () => ({
+			textAlign: "left",
+			fontSize: "1rem",
+			maxHeight: "200px",
+			overflow: "hidden",
+			overflowY: "scroll",
+		}),
+	};
+
 	return (
 		<div>
 			<form className="formNewEmployee" onSubmit={submitForm}>
@@ -133,19 +160,18 @@ const Form = () => {
 					</label>
 					<label>
 						<div className="labelName">State :</div>
-						<input
-							type="text"
-							name="state"
+						<Select
+							styles={customStyles}
 							value={formInputs.state}
-							onChange={handleChange}
-							required
-							autoComplete="no"
+							onChange={handleSelectState}
+							options={states}
+							placeholder={formInputs.state ? formInputs.state : "Select..."}
 						/>
 					</label>
 					<label>
 						<div className="labelName">Zip Code :</div>
 						<input
-							type="text"
+							type="number"
 							name="zipCode"
 							value={formInputs.zipCode}
 							onChange={handleChange}
@@ -156,13 +182,12 @@ const Form = () => {
 				</fieldset>
 				<label>
 					<div className="labelName">Department :</div>
-					<input
-						type="text"
-						name="department"
+					<Select
+						styles={customStyles}
 						value={formInputs.department}
-						onChange={handleChange}
-						autoComplete="no"
-						required
+						onChange={handleSelectDepartment}
+						options={departments}
+						placeholder={formInputs.department ? formInputs.department : "Select..."}
 					/>
 				</label>
 				<input className="formSubmitButton" type="submit" value="Save" />

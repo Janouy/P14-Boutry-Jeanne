@@ -6,7 +6,7 @@ function CreateEmployee() {
 	return (
 		<div className="createEmployee">
 			<h1>HRnet</h1>
-			<div>View Current Employees</div>
+			<div className="pageTitle">View Current Employees</div>
 			<h2>Create Employee</h2>
 			<Form />
 		</div>
