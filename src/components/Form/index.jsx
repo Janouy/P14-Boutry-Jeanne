@@ -3,8 +3,11 @@ import "./style.css";
 import Calendar from "react-test-janouy/dist/pages/Calendar";
 import { departments, states } from "../../utils/const";
 import Select from "react-select";
+import { addEmployee } from "../../features/employeesSlice";
+import { useDispatch } from "react-redux";
 
 const Form = () => {
+	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
 	const [formInputs, setFormInputs] = useState({
@@ -33,7 +36,7 @@ const Form = () => {
 	};
 
 	const submitForm = (event) => {
-		console.log(formInputs);
+		dispatch(addEmployee(formInputs));
 		event.preventDefault();
 		setFormInputs({
 			firstName: "",
@@ -105,6 +108,7 @@ const Form = () => {
 							onClick={() => showCalendar("birthDate")}
 							required
 							autoComplete="no"
+							pattern="\d{2}\/\d{2}\/\d{4}"
 						/>
 					</label>
 					<Calendar
@@ -125,6 +129,7 @@ const Form = () => {
 							onClick={() => showCalendar("startDate")}
 							required
 							autoComplete="no"
+							pattern="\d{2}\/\d{2}\/\d{4}"
 						/>
 					</label>
 					<Calendar
@@ -177,6 +182,7 @@ const Form = () => {
 							onChange={handleChange}
 							required
 							autoComplete="no"
+							maxLength="8"
 						/>
 					</label>
 				</fieldset>
