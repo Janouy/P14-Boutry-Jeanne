@@ -13,3 +13,6 @@
 	text-decoration: none;
 	color: #000;
 }
+.homeLink:hover {
+	color: #6e8510;
+}

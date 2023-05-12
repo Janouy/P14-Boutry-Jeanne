@@ -15,3 +15,10 @@ h2 {
 	text-decoration: none;
 	color: #000;
 }
+.pageTitle:hover {
+	color: #6e8510;
+}
+.modalCloseButton {
+	cursor: pointer;
+	border: 1px solid #6e8510;
+}

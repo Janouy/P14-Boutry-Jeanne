@@ -6,7 +6,7 @@ import Select from "react-select";
 import { addEmployee } from "../../features/employeesSlice";
 import { useDispatch } from "react-redux";
 
-const Form = () => {
+const Form = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
@@ -49,6 +49,7 @@ const Form = () => {
 			zipCode: "",
 			department: "",
 		});
+		setIsOpen(true);
 	};
 	const showCalendar = (event) => {
 		event === "birthDate" ? setBirthCalendarOpen(true) : setStartCalendarOpen(true);
@@ -107,7 +108,7 @@ const Form = () => {
 							onClick={() => showCalendar("birthDate")}
 							required
 							autoComplete="no"
-							pattern="\d{2}\/\d{2}\/\d{4}"
+							pattern="^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$"
 						/>
 					</label>
 					<Calendar
@@ -127,7 +128,7 @@ const Form = () => {
 							onClick={() => showCalendar("startDate")}
 							required
 							autoComplete="no"
-							pattern="\d{2}\/\d{2}\/\d{4}"
+							pattern="^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$"
 						/>
 					</label>
 					<Calendar
