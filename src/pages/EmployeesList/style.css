@@ -1,0 +1,15 @@
+.employeesList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.sorteWrapper {
+	width: 900px;
+	display: flex;
+	justify-content: space-between;
+}
+.homeLink {
+	font-size: 16px;
+	text-decoration: none;
+	color: #000;
+}

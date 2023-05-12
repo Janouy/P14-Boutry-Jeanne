@@ -104,7 +104,6 @@ const Form = () => {
 							type="text"
 							name="birthDate"
 							value={formInputs.birthDate}
-							onChange={handleChange}
 							onClick={() => showCalendar("birthDate")}
 							required
 							autoComplete="no"
@@ -125,7 +124,6 @@ const Form = () => {
 							type="text"
 							name="startDate"
 							value={formInputs.startDate}
-							onChange={handleChange}
 							onClick={() => showCalendar("startDate")}
 							required
 							autoComplete="no"
@@ -183,6 +181,7 @@ const Form = () => {
 							required
 							autoComplete="no"
 							maxLength="8"
+							min="1"
 						/>
 					</label>
 				</fieldset>

@@ -14,7 +14,8 @@
 		"react-router-dom": "^6.11.1",
 		"react-scripts": "5.0.1",
 		"react-select": "^5.7.2",
-		"react-test-janouy": "^0.1.28",
+		"react-table": "^7.8.0",
+		"react-test-janouy": "^0.1.38",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {

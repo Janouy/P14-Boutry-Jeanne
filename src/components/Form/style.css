@@ -75,3 +75,6 @@ input {
 .css-w42v31-control {
 	min-height: 30px !important;
 }
+th {
+	cursor: pointer;
+}
