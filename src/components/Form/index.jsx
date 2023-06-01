@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./style.css";
-import Calendar from "react-test-janouy/dist/pages/Calendar";
+import Calendar from "react-date-picker-janouy/dist/pages/Calendar";
 import { departments, states } from "../../utils/const";
 import Select from "react-select";
 import { addEmployee } from "../../features/employeesSlice";
 import { useDispatch } from "react-redux";
 
 const Form = ({ setIsOpen }) => {
+	const language = "fr";
+	const dateFormat = "mm.dd.yyyy";
 	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
@@ -72,7 +74,6 @@ const Form = ({ setIsOpen }) => {
 			overflowY: "scroll",
 		}),
 	};
-
 	return (
 		<div>
 			<form className="formNewEmployee" onSubmit={submitForm}>
@@ -105,10 +106,10 @@ const Form = ({ setIsOpen }) => {
 							type="text"
 							name="birthDate"
 							value={formInputs.birthDate}
+							onChange={handleChange}
 							onClick={() => showCalendar("birthDate")}
 							required
 							autoComplete="no"
-							pattern="^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$"
 						/>
 					</label>
 					<Calendar
@@ -116,6 +117,8 @@ const Form = ({ setIsOpen }) => {
 						setIsCalendarOpen={setBirthCalendarOpen}
 						selectedDate={formInputs.birthDate}
 						handleSelectedDate={(date) => updateFormInput("birthDate", date)}
+						language={language}
+						dateFormat={dateFormat}
 					/>
 				</div>
 				<div onMouseLeave={() => setStartCalendarOpen(false)}>
@@ -125,10 +128,10 @@ const Form = ({ setIsOpen }) => {
 							type="text"
 							name="startDate"
 							value={formInputs.startDate}
+							onChange={handleChange}
 							onClick={() => showCalendar("startDate")}
 							required
 							autoComplete="no"
-							pattern="^(0?[1-9]|1[0-2])\/(0?[1-9]|[1-2][0-9]|3[0-1])\/\d{4}$"
 						/>
 					</label>
 					<Calendar
@@ -136,6 +139,8 @@ const Form = ({ setIsOpen }) => {
 						setIsCalendarOpen={setStartCalendarOpen}
 						selectedDate={formInputs.startDate}
 						handleSelectedDate={(date) => updateFormInput("startDate", date)}
+						language={language}
+						dateFormat={dateFormat}
 					/>
 				</div>
 				<fieldset className="address">

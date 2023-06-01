@@ -9,6 +9,7 @@
 		"@testing-library/user-event": "^13.5.0",
 		"prettier": "^2.8.7",
 		"react": "^18.2.0",
+		"react-date-picker-janouy": "^0.1.1",
 		"react-dom": "^18.2.0",
 		"react-modal": "^3.16.1",
 		"react-redux": "^8.0.5",
@@ -16,7 +17,6 @@
 		"react-scripts": "5.0.1",
 		"react-select": "^5.7.2",
 		"react-table": "^7.8.0",
-		"react-test-janouy": "^0.1.40",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {

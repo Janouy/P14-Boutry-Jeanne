@@ -11,39 +11,13 @@ import { Link } from "react-router-dom";
 
 function EmployeesList() {
 	const employeesList = useSelector(getEmployeesList);
+
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		if (employeesList) {
 			setData(employeesList);
 		}
 	}, [employeesList]);
-	// const data = useMemo(
-	// 	() => [
-	// 		{
-	// 			firstName: "John",
-	// 			lastName: "Doe",
-	// 			birthDate: "05/01/1977",
-	// 			startDate: "05/06/2023",
-	// 			street: "rue Lambda",
-	// 			city: "NY",
-	// 			state: "New York",
-	// 			zipCode: "06555",
-	// 			department: "Sales",
-	// 		},
-	// 		{
-	// 			firstName: "Jane",
-	// 			lastName: "Doe",
-	// 			birthDate: "16/05/1980",
-	// 			startDate: "05/06/2023",
-	// 			street: "rue Paradis",
-	// 			city: "MS",
-	// 			state: "New York",
-	// 			zipCode: "06555",
-	// 			department: "Marketing",
-	// 		},
-	// 	],
-	// 	[],
-	// );
 
 	const columns = useMemo(() => columnsNames, []);
 
