@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-import Calendar from "react-date-picker-janouy/dist/pages/Calendar";
+import CalendarInput from "react-date-picker-janouy/dist/components/CalendarInput";
 import { departments, states } from "../../utils/const";
 import Select from "react-select";
 import { addEmployee } from "../../features/employeesSlice";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 const Form = ({ setIsOpen }) => {
 	const language = "fr";
 	const dateFormat = "mm.dd.yyyy";
+	const inputStyle = { width: 197, height: 25, fontSize: 13 };
 	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
@@ -53,9 +54,7 @@ const Form = ({ setIsOpen }) => {
 		});
 		setIsOpen(true);
 	};
-	const showCalendar = (event) => {
-		event === "birthDate" ? setBirthCalendarOpen(true) : setStartCalendarOpen(true);
-	};
+
 	const customStyles = {
 		control: (provided, state) => ({
 			...provided,
@@ -99,49 +98,33 @@ const Form = ({ setIsOpen }) => {
 						required
 					/>
 				</label>
-				<div onMouseLeave={() => setBirthCalendarOpen(false)}>
+				<div className="birthCalendarWrapper">
 					<label>
 						<div className="labelName">Date Of Birth :</div>
-						<input
-							type="text"
-							name="birthDate"
-							value={formInputs.birthDate}
-							onChange={handleChange}
-							onClick={() => showCalendar("birthDate")}
-							required
-							autoComplete="no"
+						<CalendarInput
+							isCalendarOpen={isBirthCalendarOpen}
+							setIsCalendarOpen={setBirthCalendarOpen}
+							selectedDate={formInputs.birthDate}
+							handleSelectedDate={(date) => updateFormInput("birthDate", date)}
+							language={language}
+							dateFormat={dateFormat}
+							inputStyle={inputStyle}
 						/>
 					</label>
-					<Calendar
-						isCalendarOpen={isBirthCalendarOpen}
-						setIsCalendarOpen={setBirthCalendarOpen}
-						selectedDate={formInputs.birthDate}
-						handleSelectedDate={(date) => updateFormInput("birthDate", date)}
-						language={language}
-						dateFormat={dateFormat}
-					/>
 				</div>
-				<div onMouseLeave={() => setStartCalendarOpen(false)}>
+				<div className="startCalendarWrapper">
 					<label>
 						<div className="labelName">Start Date :</div>
-						<input
-							type="text"
-							name="startDate"
-							value={formInputs.startDate}
-							onChange={handleChange}
-							onClick={() => showCalendar("startDate")}
-							required
-							autoComplete="no"
+						<CalendarInput
+							isCalendarOpen={isStartCalendarOpen}
+							setIsCalendarOpen={setStartCalendarOpen}
+							selectedDate={formInputs.startDate}
+							handleSelectedDate={(date) => updateFormInput("startDate", date)}
+							language={language}
+							dateFormat={dateFormat}
+							inputStyle={inputStyle}
 						/>
 					</label>
-					<Calendar
-						isCalendarOpen={isStartCalendarOpen}
-						setIsCalendarOpen={setStartCalendarOpen}
-						selectedDate={formInputs.startDate}
-						handleSelectedDate={(date) => updateFormInput("startDate", date)}
-						language={language}
-						dateFormat={dateFormat}
-					/>
 				</div>
 				<fieldset className="address">
 					<legend>Address</legend>

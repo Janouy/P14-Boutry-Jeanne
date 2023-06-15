@@ -78,3 +78,7 @@ input {
 th {
 	cursor: pointer;
 }
+.startCalendarWrapper,
+.birthCalendarWrapper {
+	height: 70px;
+}
