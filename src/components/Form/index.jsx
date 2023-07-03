@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
-import CalendarInput from "react-date-picker-janouy/dist/components/CalendarInput";
+import CalendarInput from "react-date-picker-janouy/dist/components/CalendarWrapper";
 import { departments, states } from "../../utils/const";
 import Select from "react-select";
 import { addEmployee } from "../../features/employeesSlice";
 import { useDispatch } from "react-redux";
 
-const Form = ({ setIsOpen }) => {
+const Form = ({ setIsModalOpen }) => {
 	const language = "fr";
-	const dateFormat = "mm.dd.yyyy";
+	const dateFormat = "MM.dd.yyyy";
 	const inputStyle = { width: 197, height: 25, fontSize: 13 };
 	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
+	const birthAriaLabelName = "birthDateInput";
+	const startAriaLabelName = "startDateInput";
 	const [formInputs, setFormInputs] = useState({
 		firstName: "",
 		lastName: "",
@@ -24,18 +26,17 @@ const Form = ({ setIsOpen }) => {
 		zipCode: "",
 		department: "",
 	});
-
 	const updateFormInput = (name, value) => {
 		setFormInputs({ ...formInputs, [name]: value });
 	};
-	const handleChange = (event) => {
+	const handleChangeFormInputs = (event) => {
 		updateFormInput(event.target.name, event.target.value);
 	};
 	const handleSelectDepartment = (event) => {
-		updateFormInput("department", event.value);
+		updateFormInput("department", event);
 	};
 	const handleSelectState = (event) => {
-		updateFormInput("state", event.value);
+		updateFormInput("state", event);
 	};
 
 	const submitForm = (event) => {
@@ -52,8 +53,18 @@ const Form = ({ setIsOpen }) => {
 			zipCode: "",
 			department: "",
 		});
-		setIsOpen(true);
+		setIsModalOpen(true);
 	};
+	useEffect(() => {
+		if (isBirthCalendarOpen) {
+			setStartCalendarOpen(false);
+		}
+	}, [isBirthCalendarOpen]);
+	useEffect(() => {
+		if (isStartCalendarOpen) {
+			setBirthCalendarOpen(false);
+		}
+	}, [isStartCalendarOpen]);
 
 	const customStyles = {
 		control: (provided, state) => ({
@@ -75,14 +86,15 @@ const Form = ({ setIsOpen }) => {
 	};
 	return (
 		<div>
-			<form className="formNewEmployee" onSubmit={submitForm}>
+			<form data-testid="form" aria-label="Add an employee" className="formNewEmployee" onSubmit={submitForm}>
 				<label>
 					<div className="labelName">FirstName :</div>
 					<input
 						type="text"
 						name="firstName"
+						aria-label="firstName"
 						value={formInputs.firstName}
-						onChange={handleChange}
+						onChange={handleChangeFormInputs}
 						autoComplete="no"
 						required
 					/>
@@ -92,14 +104,15 @@ const Form = ({ setIsOpen }) => {
 					<input
 						type="text"
 						name="lastName"
+						aria-label="lastName"
 						value={formInputs.lastName}
-						onChange={handleChange}
+						onChange={handleChangeFormInputs}
 						autoComplete="no"
 						required
 					/>
 				</label>
 				<div className="birthCalendarWrapper">
-					<label>
+					<label className="birthCalendarWrapper">
 						<div className="labelName">Date Of Birth :</div>
 						<CalendarInput
 							isCalendarOpen={isBirthCalendarOpen}
@@ -109,6 +122,7 @@ const Form = ({ setIsOpen }) => {
 							language={language}
 							dateFormat={dateFormat}
 							inputStyle={inputStyle}
+							ariaLabelName={birthAriaLabelName}
 						/>
 					</label>
 				</div>
@@ -123,6 +137,7 @@ const Form = ({ setIsOpen }) => {
 							language={language}
 							dateFormat={dateFormat}
 							inputStyle={inputStyle}
+							ariaLabelName={startAriaLabelName}
 						/>
 					</label>
 				</div>
@@ -133,8 +148,9 @@ const Form = ({ setIsOpen }) => {
 						<input
 							type="text"
 							name="street"
+							aria-label="street"
 							value={formInputs.street}
-							onChange={handleChange}
+							onChange={handleChangeFormInputs}
 							required
 							autoComplete="no"
 						/>
@@ -144,29 +160,32 @@ const Form = ({ setIsOpen }) => {
 						<input
 							type="text"
 							name="city"
+							aria-label="city"
 							value={formInputs.city}
-							onChange={handleChange}
+							onChange={handleChangeFormInputs}
 							required
 							autoComplete="no"
 						/>
 					</label>
-					<label>
-						<div className="labelName">State :</div>
-						<Select
-							styles={customStyles}
-							value={formInputs.state}
-							onChange={handleSelectState}
-							options={states}
-							placeholder={formInputs.state ? formInputs.state : "Select..."}
-						/>
+					<label className="labelName" htmlFor="state">
+						State :
 					</label>
+					<Select
+						name="state"
+						inputId="state"
+						styles={customStyles}
+						value={formInputs.state}
+						onChange={handleSelectState}
+						options={states}
+					/>
 					<label>
 						<div className="labelName">Zip Code :</div>
 						<input
 							type="number"
 							name="zipCode"
+							aria-label="zipCode"
 							value={formInputs.zipCode}
-							onChange={handleChange}
+							onChange={handleChangeFormInputs}
 							required
 							autoComplete="no"
 							maxLength="8"
@@ -174,16 +193,19 @@ const Form = ({ setIsOpen }) => {
 						/>
 					</label>
 				</fieldset>
-				<label>
-					<div className="labelName">Department :</div>
-					<Select
-						styles={customStyles}
-						value={formInputs.department}
-						onChange={handleSelectDepartment}
-						options={departments}
-						placeholder={formInputs.department ? formInputs.department : "Select..."}
-					/>
+				<label className="labelName" htmlFor="department">
+					Department :
 				</label>
+
+				<Select
+					name="department"
+					inputId="department"
+					styles={customStyles}
+					value={formInputs.department}
+					onChange={handleSelectDepartment}
+					options={departments}
+				/>
+
 				<input className="formSubmitButton" type="submit" value="Save" />
 			</form>
 		</div>

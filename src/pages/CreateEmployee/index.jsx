@@ -22,11 +22,12 @@ function CreateEmployee() {
 	};
 	Modal.setAppElement("body");
 
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [modalIsOpen, setIsModalOpen] = useState(false);
 
 	function closeModal() {
-		setIsOpen(false);
+		setIsModalOpen(false);
 	}
+
 	return (
 		<>
 			<div className="createEmployee">
@@ -35,7 +36,7 @@ function CreateEmployee() {
 					View Current Employees
 				</Link>
 				<h2>Create Employee</h2>
-				<Form setIsOpen={setIsOpen} />
+				<Form setIsOpen={setIsModalOpen} />
 			</div>
 			<div>
 				<Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="modal">
