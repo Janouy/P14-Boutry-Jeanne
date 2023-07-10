@@ -36,7 +36,7 @@ function CreateEmployee() {
 					View Current Employees
 				</Link>
 				<h2>Create Employee</h2>
-				<Form setIsOpen={setIsModalOpen} />
+				<Form setIsModalOpen={setIsModalOpen} />
 			</div>
 			<div>
 				<Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="modal">

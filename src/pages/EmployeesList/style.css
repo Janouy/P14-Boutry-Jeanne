@@ -1,12 +1,20 @@
 .employeesList {
 	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+#table {
+	display: flex;
+	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 }
 .sorteWrapper {
-	width: 900px;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 2vh;
 }
 .homeLink {
 	font-size: 16px;
@@ -15,4 +23,22 @@
 }
 .homeLink:hover {
 	color: #6e8510;
+}
+#alert {
+	display: none;
+}
+@media (max-width: 768px) and (orientation: portrait) {
+	#table {
+		display: none;
+	}
+	#alert {
+		display: block;
+		margin-top: 50px;
+		font-size: 24px;
+	}
+}
+@media only screen and (orientation: landscape) {
+	#alert {
+		display: none;
+	}
 }

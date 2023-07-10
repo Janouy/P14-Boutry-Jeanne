@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import CalendarInput from "react-date-picker-janouy/dist/components/CalendarWrapper";
+import Calendar from "react-date-picker-janouy/dist/components/CalendarWrapper";
 import { departments, states } from "../../utils/const";
 import Select from "react-select";
 import { addEmployee } from "../../features/employeesSlice";
@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Form = ({ setIsModalOpen }) => {
 	const language = "fr";
-	const dateFormat = "MM.dd.yyyy";
+	const selectedDateFormat = "MM.dd.yyyy";
 	const inputStyle = { width: 197, height: 25, fontSize: 13 };
 	const dispatch = useDispatch();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
@@ -26,6 +26,8 @@ const Form = ({ setIsModalOpen }) => {
 		zipCode: "",
 		department: "",
 	});
+	const [selectState, setSelectState] = useState("");
+	const [selectDepartment, setSelectedDepartment] = useState("");
 	const updateFormInput = (name, value) => {
 		setFormInputs({ ...formInputs, [name]: value });
 	};
@@ -33,10 +35,12 @@ const Form = ({ setIsModalOpen }) => {
 		updateFormInput(event.target.name, event.target.value);
 	};
 	const handleSelectDepartment = (event) => {
-		updateFormInput("department", event);
+		updateFormInput("department", event.value);
+		setSelectedDepartment(event);
 	};
 	const handleSelectState = (event) => {
-		updateFormInput("state", event);
+		updateFormInput("state", event.value);
+		setSelectState(event);
 	};
 
 	const submitForm = (event) => {
@@ -112,15 +116,15 @@ const Form = ({ setIsModalOpen }) => {
 					/>
 				</label>
 				<div className="birthCalendarWrapper">
-					<label className="birthCalendarWrapper">
+					<label>
 						<div className="labelName">Date Of Birth :</div>
-						<CalendarInput
+						<Calendar
 							isCalendarOpen={isBirthCalendarOpen}
 							setIsCalendarOpen={setBirthCalendarOpen}
 							selectedDate={formInputs.birthDate}
-							handleSelectedDate={(date) => updateFormInput("birthDate", date)}
+							setSelectedDate={(date) => updateFormInput("birthDate", date)}
 							language={language}
-							dateFormat={dateFormat}
+							selectedDateFormat={selectedDateFormat}
 							inputStyle={inputStyle}
 							ariaLabelName={birthAriaLabelName}
 						/>
@@ -129,13 +133,13 @@ const Form = ({ setIsModalOpen }) => {
 				<div className="startCalendarWrapper">
 					<label>
 						<div className="labelName">Start Date :</div>
-						<CalendarInput
+						<Calendar
 							isCalendarOpen={isStartCalendarOpen}
 							setIsCalendarOpen={setStartCalendarOpen}
 							selectedDate={formInputs.startDate}
-							handleSelectedDate={(date) => updateFormInput("startDate", date)}
+							setSelectedDate={(date) => updateFormInput("startDate", date)}
 							language={language}
-							dateFormat={dateFormat}
+							selectedDateFormat={selectedDateFormat}
 							inputStyle={inputStyle}
 							ariaLabelName={startAriaLabelName}
 						/>
@@ -174,7 +178,7 @@ const Form = ({ setIsModalOpen }) => {
 						name="state"
 						inputId="state"
 						styles={customStyles}
-						value={formInputs.state}
+						value={selectState}
 						onChange={handleSelectState}
 						options={states}
 					/>
@@ -201,7 +205,7 @@ const Form = ({ setIsModalOpen }) => {
 					name="department"
 					inputId="department"
 					styles={customStyles}
-					value={formInputs.department}
+					value={selectDepartment}
 					onChange={handleSelectDepartment}
 					options={departments}
 				/>
