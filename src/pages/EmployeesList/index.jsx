@@ -1,16 +1,13 @@
 import React, { useMemo, useEffect, useState } from "react";
 import "./style.css";
-import { getEmployeesList } from "../../selectors";
-import { useSelector } from "react-redux";
 import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from "react-table";
-import { columnsNames } from "../../utils/const";
+import { columnsInfos } from "../../utils/const";
 import GlobalFilter from "../../components/GlobalFilter";
 import PagesToShow from "../../components/PagesToShow";
 import Pagination from "../../components/Pagination";
 import { Link } from "react-router-dom";
 
-function EmployeesList() {
-	const employeesList = useSelector(getEmployeesList);
+function EmployeesList({ employeesList }) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
@@ -19,7 +16,7 @@ function EmployeesList() {
 		}
 	}, [employeesList]);
 
-	const columns = useMemo(() => columnsNames, []);
+	const columns = useMemo(() => columnsInfos, []);
 
 	const {
 		getTableProps,

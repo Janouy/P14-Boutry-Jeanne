@@ -4,7 +4,7 @@ import "./style.css";
 import Form from "../../components/Form";
 import { Link } from "react-router-dom";
 
-function CreateEmployee() {
+function CreateEmployee({ employeesList }) {
 	const customStyles = {
 		content: {
 			top: "50%",
@@ -36,7 +36,7 @@ function CreateEmployee() {
 					View Current Employees
 				</Link>
 				<h2>Create Employee</h2>
-				<Form setIsModalOpen={setIsModalOpen} />
+				<Form setIsModalOpen={setIsModalOpen} employeesList={employeesList} />
 			</div>
 			<div>
 				<Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="modal">

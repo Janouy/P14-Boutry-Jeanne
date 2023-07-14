@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { employeesList } from "../utils/employeesList";
+//import { employeesList } from "../utils/employeesList";
 
 // creating a redux state for employees infos
 export const employeesSlice = createSlice({
 	name: "list",
 	initialState: {
-		employeesList: employeesList,
+		employeesList: [],
 	},
 	reducers: {
 		// Connected user's  informations

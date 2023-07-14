@@ -4,7 +4,7 @@ import EmployeesList from "./";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
-import { columnsNames } from "../../utils/const";
+import { columnsInfos } from "../../utils/const";
 
 describe("Component EmployeesList", () => {
 	it("Should render with no crash", () => {
@@ -22,8 +22,8 @@ describe("Component EmployeesList", () => {
 			</Provider>,
 			{ wrapper: BrowserRouter },
 		);
-		for (let columnsNameIt = 0; columnsNameIt < columnsNames.lenght - 1; columnsNameIt++) {
-			expect(screen.getByText(columnsNames[columnsNameIt])).toBeInTheDocument();
+		for (let columnsNameIt = 0; columnsNameIt < columnsInfos.length - 1; columnsNameIt++) {
+			expect(screen.getByText(columnsInfos[columnsNameIt]["Header"])).toBeInTheDocument();
 		}
 	});
 	describe("On click the 'create employee' page link", () => {

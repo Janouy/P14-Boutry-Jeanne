@@ -38,7 +38,7 @@ export const states = [
 	{ value: "New Hampshire", label: "New Hampshire" },
 ];
 
-export const columnsNames = [
+export const columnsInfos = [
 	{
 		Header: "First Name",
 		accessor: "firstName",
@@ -50,6 +50,13 @@ export const columnsNames = [
 	{
 		Header: "Start Date",
 		accessor: "startDate",
+		sortType: (a, b) => {
+			var aComps = a.values.startDate.split(".");
+			var bComps = b.values.startDate.split(".");
+			var aDate = new Date(aComps[2], aComps[0], aComps[1]);
+			var bDate = new Date(bComps[2], bComps[0], bComps[1]);
+			return aDate.getTime() - bDate.getTime();
+		},
 	},
 	{
 		Header: "Department",
@@ -58,6 +65,13 @@ export const columnsNames = [
 	{
 		Header: "Date of Birth",
 		accessor: "birthDate",
+		sortType: (a, b) => {
+			var aComps = a.values.startDate.split(".");
+			var bComps = b.values.startDate.split(".");
+			var aDate = new Date(aComps[2], aComps[0], aComps[1]);
+			var bDate = new Date(bComps[2], bComps[0], bComps[1]);
+			return aDate.getTime() - bDate.getTime();
+		},
 	},
 	{
 		Header: "Street",
