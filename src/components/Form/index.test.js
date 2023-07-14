@@ -16,13 +16,39 @@ const newEmployee = {
 	state: "Alabama",
 	zipCode: 10001,
 	department: "Sales",
+	id: 3,
 };
-
+const employeesList = [
+	{
+		firstName: "John",
+		lastName: "Smith",
+		birthDate: "02.12.1990",
+		startDate: "06.01.2015",
+		street: "123 Main St",
+		city: "New York",
+		state: "NY",
+		zipCode: "10001",
+		department: "Sales",
+		id: 1,
+	},
+	{
+		firstName: "Emily",
+		lastName: "Johnson",
+		birthDate: "08.15.1985",
+		startDate: "04.10.2010",
+		street: "456 Elm St",
+		city: "Los Angeles",
+		state: "CA",
+		zipCode: "90001",
+		department: "Marketing",
+		id: 2,
+	},
+];
 describe("Component Form", () => {
 	it("Should render with no crash", () => {
 		render(
 			<Provider store={store}>
-				<Form />
+				<Form employeesList={employeesList} />
 			</Provider>,
 			{ wrapper: BrowserRouter },
 		);
@@ -31,7 +57,7 @@ describe("Component Form", () => {
 		const setup = () => {
 			const utils = render(
 				<Provider store={store}>
-					<Form />
+					<Form employeesList={employeesList} />
 				</Provider>,
 				{ wrapper: BrowserRouter },
 			);
@@ -45,6 +71,7 @@ describe("Component Form", () => {
 				state: screen.getByLabelText("State :"),
 				zipCode: screen.getByLabelText("zipCode"),
 				department: screen.getByLabelText("Department :"),
+				id: 3,
 			};
 
 			return {
@@ -87,7 +114,7 @@ describe("Component Form", () => {
 			const mockSetIsModalOpen = jest.fn();
 			render(
 				<Provider store={store}>
-					<Form setIsModalOpen={mockSetIsModalOpen} />
+					<Form setIsModalOpen={mockSetIsModalOpen} employeesList={employeesList} />
 				</Provider>,
 				{ wrapper: BrowserRouter },
 			);
@@ -99,7 +126,7 @@ describe("Component Form", () => {
 			const mockSetIsModalOpen = jest.fn();
 			render(
 				<Provider store={store}>
-					<Form setIsModalOpen={mockSetIsModalOpen} />
+					<Form setIsModalOpen={mockSetIsModalOpen} employeesList={employeesList} />
 				</Provider>,
 				{ wrapper: BrowserRouter },
 			);

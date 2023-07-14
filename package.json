@@ -29,6 +29,11 @@
 		"eject": "react-scripts eject",
 		"format": "prettier --write \"src/**/*.jsx\""
 	},
+	"jest": {
+		"moduleNameMapper": {
+			"axios": "axios/dist/node/axios.cjs"
+		}
+	},
 	"eslintConfig": {
 		"extends": [
 			"react-app",
