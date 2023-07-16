@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import { employeesList } from "../utils/employeesList";
 
 // creating a redux state for employees infos
 export const employeesSlice = createSlice({

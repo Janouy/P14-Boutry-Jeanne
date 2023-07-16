@@ -121,16 +121,5 @@ describe("Component Form", () => {
 			fireEvent.click(screen.getByText(/Save/i));
 			expect(mockSetIsModalOpen).toBeCalledWith(true);
 		});
-
-		it("Shouldn't send the form if an input is empty", () => {
-			const mockSetIsModalOpen = jest.fn();
-			render(
-				<Provider store={store}>
-					<Form setIsModalOpen={mockSetIsModalOpen} employeesList={employeesList} />
-				</Provider>,
-				{ wrapper: BrowserRouter },
-			);
-			fireEvent.click(screen.getByText(/Save/i));
-		});
 	});
 });

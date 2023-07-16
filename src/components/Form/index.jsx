@@ -54,7 +54,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 		dispatch(setEmployeesData(formInputs));
 		event.preventDefault();
 		setFormInputs({
-			id: 41,
+			id: null,
 			firstName: "",
 			lastName: "",
 			birthDate: "",
