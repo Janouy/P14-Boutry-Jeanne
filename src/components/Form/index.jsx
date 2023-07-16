@@ -46,7 +46,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 	};
 	useEffect(() => {
 		if (employeesList) {
-			setNewEmployeeId(employeesList[employeesList.length - 1].id + 1);
+			setNewEmployeeId(employeesList[employeesList.length - 1]?.id + 1);
 		}
 	}, [employeesList]);
 	const submitForm = (event) => {
