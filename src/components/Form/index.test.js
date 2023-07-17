@@ -9,7 +9,7 @@ import { act } from "react-dom/test-utils";
 const newEmployee = {
 	firstName: "Harry",
 	lastName: "Potter",
-	birthDate: "07.31.1980",
+	birthDate: "31.07.1980",
 	startDate: "06.30.2023",
 	street: "Nice street",
 	city: "N.Y",

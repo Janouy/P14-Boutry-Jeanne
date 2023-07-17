@@ -90,3 +90,5 @@ export const columnsInfos = [
 		accessor: "zipCode",
 	},
 ];
+
+export const today = new Date();
