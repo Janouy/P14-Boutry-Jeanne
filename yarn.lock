@@ -8165,10 +8165,10 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-date-picker-janouy@^0.1.101:
-  version "0.1.101"
-  resolved "https://registry.npmjs.org/react-date-picker-janouy/-/react-date-picker-janouy-0.1.101.tgz"
-  integrity sha512-w8+66tI89etUYWBVXixONNW7nZ/NbZQ75a1ty3YeLBZluzaz/oFBT+maZljovDmoR5QKQkU8gRWIiOaxGW7ryw==
+react-date-picker-janouy@^0.1.102:
+  version "0.1.102"
+  resolved "https://registry.npmjs.org/react-date-picker-janouy/-/react-date-picker-janouy-0.1.102.tgz"
+  integrity sha512-1ijO/v15QlzIuCPiMUQKC6Hew4IoRIPd/ET4nTyFttHR+G7y8JDa/aolmMXhEIAh2LCyVrmVSwLmvyRzhIZAkw==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@babel/polyfill" "^7.12.1"

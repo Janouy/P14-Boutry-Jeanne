@@ -7,11 +7,11 @@ export const employeesSlice = createSlice({
 		employeesList: [],
 	},
 	reducers: {
-		// Connected user's  informations
+		// set employees list
 		setEmployees: (state, action) => {
 			state.employeesList = action.payload;
 		},
-		// Employees
+		// Add an employee
 		addEmployee: (state, action) => {
 			state.employeesList.push(action.payload);
 		},
