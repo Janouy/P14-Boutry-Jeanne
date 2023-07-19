@@ -11,7 +11,7 @@
 		"json-server": "^0.17.3",
 		"prettier": "^2.8.7",
 		"react": "^18.2.0",
-		"react-date-picker-janouy": "^0.1.97",
+		"react-date-picker-janouy": "^0.1.101",
 		"react-dom": "^18.2.0",
 		"react-modal": "^3.16.1",
 		"react-redux": "^8.0.5",

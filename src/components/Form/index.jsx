@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import DatePicker from "react-date-picker-janouy/dist/components/DatePicker";
-import { departments, states, today } from "../../utils/const";
-import { isValidDate } from "../../utils/functions";
+import { departments, states } from "../../utils/const";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { setEmployeesData } from "../../services";
@@ -13,13 +12,12 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 	const inputStyle = { width: 197, height: 25, fontSize: 13 };
 	const birthAriaLabelName = "birthDateInput";
 	const startAriaLabelName = "startDateInput";
-	const majority = 18;
 	const pattern = "^[a-zA-ZÀ-ÿ0-9\\s,'\\-]*$";
+	const majority = 18;
 	const dispatch = useDispatch();
 	const [newEmployeeId, setNewEmployeeId] = useState();
 	const [isBirthCalendarOpen, setBirthCalendarOpen] = useState(false);
 	const [isStartCalendarOpen, setStartCalendarOpen] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
 	const [formInputs, setFormInputs] = useState({
 		id: null,
 		firstName: "",
@@ -35,18 +33,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 	const [selectState, setSelectState] = useState("");
 	const [selectDepartment, setSelectedDepartment] = useState("");
 	const updateFormInput = (name, value) => {
-		if (
-			name === "birthDate" &&
-			isValidDate(new Date(value)) &&
-			(new Date(value).toLocaleDateString(language) > today.toLocaleDateString(language) ||
-				today.getFullYear() - new Date(value).getFullYear() < majority)
-		) {
-			setErrorMessage("The birth date couldn't be in the future -  the employee must be of age");
-			setFormInputs({ ...formInputs, [name]: "" });
-		} else {
-			setErrorMessage("");
-			setFormInputs({ ...formInputs, [name]: value });
-		}
+		setFormInputs({ ...formInputs, [name]: value });
 	};
 	const handleChangeFormInputs = (event) => {
 		updateFormInput(event.target.name, event.target.value);
@@ -114,7 +101,6 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 
 	return (
 		<>
-			{errorMessage ? <span id="dateErrorMessage">{errorMessage}</span> : null}
 			<div>
 				<form data-testid="form" aria-label="Add an employee" className="formNewEmployee" onSubmit={submitForm}>
 					<label>
@@ -147,7 +133,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 					</label>
 					<div className="birthCalendarWrapper">
 						<label>
-							<div className="labelName">Date Of Birth :</div>
+							<div className="labelName">Date Of Birth : (must be of legal age )</div>
 							<DatePicker
 								isCalendarOpen={isBirthCalendarOpen}
 								setIsCalendarOpen={setBirthCalendarOpen}
@@ -157,6 +143,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 								selectedDateFormat={selectedDateFormat}
 								inputStyle={inputStyle}
 								ariaLabelName={birthAriaLabelName}
+								majority={majority}
 							/>
 						</label>
 					</div>
