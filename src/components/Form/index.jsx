@@ -104,7 +104,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 			<div>
 				<form data-testid="form" aria-label="Add an employee" className="formNewEmployee" onSubmit={submitForm}>
 					<label>
-						<div className="labelName">FirstName :</div>
+						<div className="labelName">First Name :</div>
 						<input
 							type="text"
 							name="firstName"
@@ -118,7 +118,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 						/>
 					</label>
 					<label>
-						<div className="labelName">LastName :</div>
+						<div className="labelName">Last Name :</div>
 						<input
 							type="text"
 							name="lastName"
@@ -133,7 +133,7 @@ const Form = ({ setIsModalOpen, employeesList }) => {
 					</label>
 					<div className="birthCalendarWrapper">
 						<label>
-							<div className="labelName">Date Of Birth : (must be of legal age )</div>
+							<div className="labelName">Date Of Birth : (must be of legal age)</div>
 							<DatePicker
 								isCalendarOpen={isBirthCalendarOpen}
 								setIsCalendarOpen={setBirthCalendarOpen}
